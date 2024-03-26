@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.android") version Plugins.kotlinAndroidVer apply false
     id("com.android.library") version Plugins.androidAppVer apply false
     id("com.google.dagger.hilt.android") version Libs.hiltVer apply false
+    id("org.jetbrains.kotlin.plugin.parcelize") version Plugins.kotlinAndroidVer apply false
     kotlin("kapt") version Plugins.kaptVer apply false
 }
 

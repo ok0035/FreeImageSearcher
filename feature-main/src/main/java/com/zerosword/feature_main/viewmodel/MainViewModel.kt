@@ -1,13 +1,12 @@
 package com.zerosword.feature_main.viewmodel
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.zerosword.data.repositoryimpl.FakeMainRepositoryImpl
 import com.zerosword.domain.reporitory.MainRepository
+import com.zerosword.domain.model.GetPhotoModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,22 +16,27 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
-    private val _mainMessage: MutableStateFlow<String> = MutableStateFlow("API CALLING...")
-    val mainMessage: StateFlow<String> get() = _mainMessage
+    private val _photos: MutableStateFlow<List<GetPhotoModel?>?> = MutableStateFlow(null)
+    val photos: StateFlow<List<GetPhotoModel?>?> get() = _photos
+
+    private val _errorMessage: MutableSharedFlow<String> = MutableSharedFlow()
+    val errorMessage get() = _errorMessage
 
     init {
         viewModelScope.launch {
-            updateMainData()
+            getPhotos()
         }
     }
 
-    private suspend fun updateMainData() = viewModelScope.launch {
-        mainRepository.getData(
+    private suspend fun getPhotos() = viewModelScope.launch {
+        mainRepository.getPhotos(
             onSuccess = {
-                _mainMessage.value = it
+                _photos.value = it
             },
             onError = {
-                _mainMessage.value = it
+                viewModelScope.launch(Dispatchers.IO) {
+                    _errorMessage.emit(it)
+                }
             }
         )
     }

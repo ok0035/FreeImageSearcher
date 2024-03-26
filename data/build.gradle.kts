@@ -3,11 +3,14 @@ import Libs.implementations
 import Libs.kaptAndroidTests
 import Libs.kapts
 import Libs.testImplementations
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     kotlin("kapt")
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
 }
 
@@ -23,18 +26,29 @@ android {
     }
 
     buildTypes {
+
+        val localProperties = Properties()
+        localProperties.load(FileInputStream(rootProject.file("local.properties")))
+
         debug {
+
+            buildConfigField(
+                type = "String",
+                name = "unsplashApiAccessKey",
+                value = "\"${localProperties["unsplashApiAccessKey"]}\""
+            )
+
             buildConfigField(
                 type = "String",
                 name = "baseUrl",
-                value = "\"https://httpbin.org/\""
+                value = "\"https://api.unsplash.com/\""
             )
         }
         release {
             buildConfigField(
                 type = "String",
                 name = "baseUrl",
-                value = "\"https://httpbin.org/\""
+                value = "\"https://api.unsplash.com/\""
             )
 
             isMinifyEnabled = false

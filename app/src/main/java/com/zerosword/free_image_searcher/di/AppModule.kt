@@ -1,4 +1,4 @@
-package com.zerosword.template.di
+package com.zerosword.free_image_searcher.di
 
 import android.content.Context
 import dagger.Module

@@ -14,11 +14,11 @@ plugins {
 }
 
 android {
-    namespace = "com.zerosword.template"
+    namespace = "com.zerosword.free_image_searcher"
     compileSdk = AppConfig.compileSdkVer
 
     defaultConfig {
-        applicationId = "com.zerosword.template"
+        applicationId = "com.zerosword.free_image_searcher"
         minSdk = AppConfig.minSdkVer
         targetSdk = AppConfig.targetSdkVer
         versionCode = AppConfig.versionCode
@@ -92,8 +92,7 @@ dependencies {
             Libs.composeUiGraphics,
             Libs.composeUiToolingPreview,
             Libs.material3,
-            Libs.glide,
-            Libs.glideForCompose,
+            Libs.coil,
             Libs.hilt
         )
     )
@@ -102,7 +101,6 @@ dependencies {
         listOf(
             Libs.hiltCompiler,
             Libs.lifecycleCompiler,
-            Libs.glide
         )
     )
     kaptTests(listOf(Libs.hiltCompiler))

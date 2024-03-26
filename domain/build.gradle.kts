@@ -8,6 +8,7 @@ plugins {
     kotlin("kapt")
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
 }
 
@@ -52,6 +53,7 @@ dependencies {
     implementations(
         listOf(
             Libs.coreKtx,
+            Libs.retrofitGsonConverter,
             Libs.hilt
         )
     )

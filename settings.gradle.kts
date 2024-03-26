@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Template"
+rootProject.name = "FreeImageSearcher"
 include(":app")
 include(":domain")
 include(":data")

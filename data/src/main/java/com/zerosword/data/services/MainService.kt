@@ -1,8 +1,11 @@
 package com.zerosword.data.services
 
 import com.skydoves.sandwich.ApiResponse
-import com.zerosword.data.response.MainResponse
+import com.zerosword.data.BuildConfig
+import com.zerosword.data.response.GetPhotosRes
 import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface MainService {
 
@@ -11,7 +14,12 @@ interface MainService {
     * 반드시 suspend function 으로 만들어야 ApiResponse를 사용할 수 있습니다.
     * */
 
-    @GET("get")
-    suspend fun getData(): ApiResponse<MainResponse>
+    @GET("photos")
+    @Headers("Authorization: Client-ID ${BuildConfig.unsplashApiAccessKey}")
+    suspend fun getPhotos(
+        @Query("page") page: Int = 1,
+        @Query("per_page") perPage: Int = 50,
+        @Query("order_by") orderBy: String = "popular"
+    ): ApiResponse<GetPhotosRes>
 
 }

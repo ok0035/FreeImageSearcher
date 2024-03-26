@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Error-->
     <string name="error_message">에러가 발생했어요.</string>
 
 </resources>

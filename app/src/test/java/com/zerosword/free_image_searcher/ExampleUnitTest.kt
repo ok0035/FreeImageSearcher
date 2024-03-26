@@ -1,4 +1,4 @@
-package com.zerosword.template
+package com.zerosword.free_image_searcher
 
 import org.junit.Test
 
