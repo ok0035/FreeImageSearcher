@@ -1,13 +1,7 @@
 package com.zerosword.domain.model
 
 
-import androidx.annotation.Keep
-import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
-
-
-data class GetPhotoModel(
+data class PhotoModel(
     val full: String? = "", // https://images.unsplash.com/face-springmorning.jpg?q=75&fm=jpg
     val raw: String? = "", // https://images.unsplash.com/face-springmorning.jpg
     val regular: String? = "", // https://images.unsplash.com/face-springmorning.jpg?q=75&fm=jpg&w=1080&fit=max

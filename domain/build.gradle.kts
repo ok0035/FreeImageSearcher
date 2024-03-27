@@ -54,7 +54,9 @@ dependencies {
         listOf(
             Libs.coreKtx,
             Libs.retrofitGsonConverter,
-            Libs.hilt
+            Libs.hilt,
+            Libs.paging,
+            Libs.pagingForCompose
         )
     )
 
@@ -67,7 +69,8 @@ dependencies {
     testImplementations(
         listOf(
             Libs.junit,
-            Libs.hiltAndroidTest
+            Libs.hiltAndroidTest,
+            Libs.pagingTest
         )
     )
 

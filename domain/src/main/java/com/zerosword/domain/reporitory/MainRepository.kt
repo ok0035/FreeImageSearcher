@@ -1,11 +1,18 @@
 package com.zerosword.domain.reporitory
 
-import com.zerosword.domain.model.GetPhotoModel
+import androidx.paging.PagingData
+import com.zerosword.domain.model.PhotoModel
+import kotlinx.coroutines.flow.Flow
+import retrofit2.http.Query
 
 
 interface MainRepository {
-    suspend fun getPhotos(
-        onSuccess: (model: List<GetPhotoModel>) -> Unit,
-        onError: (errorMessage: String) -> Unit
-    )
+    fun getPhotos(keyword: String): Flow<PagingData<PhotoModel>>
+
+//    suspend fun searchPhotos(
+//        keword: String = "",
+//        page: Int = 1,
+//        perPage: Int = 20,
+//        orderBy: String = "relevant",
+//    ) : Flow<PagingData<PhotoModel>>
 }

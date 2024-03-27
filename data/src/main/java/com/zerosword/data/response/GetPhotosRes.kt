@@ -5,6 +5,7 @@ import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.zerosword.domain.model.PhotoModel
 
 class GetPhotosRes : ArrayList<GetPhotosRes.GetPhotosResItem>(){
     @Keep
@@ -143,4 +144,20 @@ class GetPhotosRes : ArrayList<GetPhotosRes.GetPhotosResItem>(){
             ) : Parcelable
         }
     }
+}
+
+fun GetPhotosRes.toDomainModel(): List<PhotoModel> {
+    val urlList = mutableListOf<PhotoModel>()
+    this.forEach {
+        urlList.add(
+            PhotoModel(
+                full = it.urls?.full,
+                raw = it.urls?.raw,
+                regular = it.urls?.regular,
+                small = it.urls?.small,
+                thumb = it.urls?.thumb
+            )
+        )
+    }
+    return urlList
 }

@@ -81,7 +81,9 @@ dependencies {
             Libs.material3,
             Libs.coil,
             Libs.hilt,
-            Libs.hiltForCompose
+            Libs.hiltForCompose,
+            Libs.paging,
+            Libs.pagingForCompose
         )
     )
 
@@ -97,7 +99,8 @@ dependencies {
         listOf(
             Libs.junit,
             Libs.okHttpMockWebServer,
-            Libs.hiltAndroidTest
+            Libs.hiltAndroidTest,
+            Libs.pagingTest
         )
     )
 

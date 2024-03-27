@@ -63,6 +63,12 @@ object Libs {
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVer"
     const val lifecycleService = "androidx.lifecycle:lifecycle-service:$lifecycleVer"
 
+    //Paging
+    private const val pagingVer = "3.2.1"
+    const val paging = "androidx.paging:paging-runtime:$pagingVer"
+    const val pagingTest = "androidx.paging:paging-common:$pagingVer"
+    const val pagingForCompose = "androidx.paging:paging-compose:3.3.0-alpha05"
+
     fun DependencyHandler.kapts(list: List<String>) {
         list.forEach { dependency ->
             add("kapt", dependency)

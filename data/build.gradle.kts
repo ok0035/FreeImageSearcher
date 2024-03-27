@@ -88,14 +88,17 @@ dependencies {
             Libs.okHttpInterceptor,
             Libs.sandwich,
             Libs.sandwichForRetrofit,
-            Libs.hilt
+            Libs.hilt,
+            Libs.paging,
+            Libs.pagingForCompose
         )
     )
     testImplementations(
         listOf(
             Libs.junit,
             Libs.okHttpMockWebServer,
-            Libs.hiltAndroidTest
+            Libs.hiltAndroidTest,
+            Libs.pagingTest
         )
     )
 
