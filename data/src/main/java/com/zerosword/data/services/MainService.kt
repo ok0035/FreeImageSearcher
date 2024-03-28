@@ -26,7 +26,7 @@ interface MainService {
     @Headers("Authorization: Client-ID ${BuildConfig.unsplashApiAccessKey}")
     suspend fun searchPhotos(
         @Query("query") keword: String = "",
-        @Query("page") page: Int = 50,
+        @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 50,
         @Query("order_by") orderBy: String = "relevant",
     ): ApiResponse<SearchPhotoResponse>

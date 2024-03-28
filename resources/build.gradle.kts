@@ -64,6 +64,7 @@ dependencies {
             Libs.composeUiGraphics,
             Libs.composeUiToolingPreview,
             Libs.material3,
+            Libs.materialForCompose,
         )
     )
 

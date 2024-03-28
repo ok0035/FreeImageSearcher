@@ -3,6 +3,8 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object Libs {
 
     const val coreKtx = "androidx.core:core-ktx:1.12.0"
+    const val material3 = "androidx.compose.material3:material3"
+    const val materialForCompose = "androidx.compose.material3:material3"
 
     //Retrofit
     private const val retrofitVer = "2.10.0"
@@ -48,7 +50,6 @@ object Libs {
     const val coil = "io.coil-kt:coil-compose:2.6.0"
 
     //Test
-    const val material3 = "androidx.compose.material3:material3"
     const val junit = "junit:junit:4.13.2"
     const val androidxTestJunit = "androidx.test.ext:junit:1.1.5"
     const val androidxEspressoCore = "androidx.test.espresso:espresso-core:3.5.1"

@@ -7,7 +7,13 @@ import retrofit2.http.Query
 
 
 interface MainRepository {
-    fun getPhotos(keyword: String): Flow<PagingData<PhotoModel>>
+    suspend fun getPhotos(
+        keyword: String,
+        page: Int,
+        perPage: Int,
+        onError: (message: String) -> Unit,
+        onSuccess: (List<PhotoModel>) -> Unit
+    )
 
 //    suspend fun searchPhotos(
 //        keword: String = "",

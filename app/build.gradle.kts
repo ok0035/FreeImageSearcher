@@ -92,6 +92,7 @@ dependencies {
             Libs.composeUiGraphics,
             Libs.composeUiToolingPreview,
             Libs.material3,
+            Libs.materialForCompose,
             Libs.coil,
             Libs.hilt
         )

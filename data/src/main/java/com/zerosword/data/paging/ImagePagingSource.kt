@@ -18,11 +18,15 @@ class ImagePagingSource(
         return try {
             pageNumber = params.key ?: 1
             val model =
-                if (keword.isNotEmpty()) apiService.searchPhotos(keword = keword, page = pageNumber)
+                if (keword.isNotEmpty())
+                    apiService.searchPhotos(
+                        keword = keword,
+                        page = pageNumber
+                    ).getOrNull()?.toDomainModel()
+                else apiService.getPhotos(page = pageNumber)
                     .getOrNull()?.toDomainModel()
-                else apiService.getPhotos(page = pageNumber).getOrNull()?.toDomainModel()
 
-            if(model == null) return LoadResult.Page(listOf(), pageNumber - 1, pageNumber + 1)
+            if (model == null) return LoadResult.Page(listOf(), null, null)
 
             LoadResult.Page(
                 data = model,
