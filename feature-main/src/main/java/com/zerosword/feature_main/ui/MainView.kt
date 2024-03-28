@@ -1,6 +1,12 @@
 package com.zerosword.feature_main.ui
 
 import android.util.Log
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.animation.with
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
@@ -11,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -85,7 +92,6 @@ fun StaggeredVerticalGrid(
     scrollState: ScrollState,
     content: @Composable () -> Unit
 ) {
-
 
     Box(modifier = modifier.verticalScroll(scrollState)) {
         Layout(
@@ -166,26 +172,35 @@ fun ImageView(photoModel: List<PhotoModel>, pagination: () -> Unit) {
         .fillMaxSize()
 
     Box(modifier = modifier) {
-        ImageGridList(
-            modifier = Modifier,
-            spanCount = spanCount,
-            imageList = photoModel,
-            scrollState = scrollState,
-        ) { item, modifier ->
-            val url: String? = item.raw
-            Box(
-                modifier
-                    .wrapContentSize()
-                    .clip(RoundedCornerShape(24.dp))
-            ) {
-                AsyncImage(
-                    model = url,
-                    contentDescription = null, // 접근성을 위한 설명 필요
-                    modifier = modifier
-                        .padding(2.dp)
-                        .fillMaxSize(),
-                    contentScale = ContentScale.FillWidth
-                )
+
+        AnimatedContent(
+            targetState = spanCount,
+            transitionSpec = {
+                // 애니메이션 효과를 정의합니다. fadeIn + expandVertically 등 조합 가능
+                fadeIn(animationSpec = tween(300)) togetherWith fadeOut(animationSpec = tween(300))
+            }, label = ""
+        ) { spanCount ->
+            ImageGridList(
+                modifier = Modifier,
+                spanCount = spanCount,
+                imageList = photoModel,
+                scrollState = scrollState,
+            ) { item, modifier ->
+                val url: String? = item.raw
+                Box(
+                    modifier
+                        .wrapContentSize()
+                ) {
+                    AsyncImage(
+                        model = url,
+                        contentDescription = null, // 접근성을 위한 설명 필요
+                        modifier = modifier
+                            .padding(6.dp)
+                            .fillMaxSize()
+                            .clip(CircleShape),
+                        contentScale = ContentScale.FillWidth
+                    )
+                }
             }
         }
     }
@@ -193,7 +208,7 @@ fun ImageView(photoModel: List<PhotoModel>, pagination: () -> Unit) {
     // spanCountState의 값이 변경될 때만 spanCount를 업데이트하여 불필요한 재구성을 방지
     LaunchedEffect(spanCountState.value) {
         spanCount = spanCountState.value
-        delay(100)
+        delay(500)
         isGestureDetectionEnabled = true
     }
 

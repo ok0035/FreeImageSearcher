@@ -54,7 +54,6 @@ class MainViewModel @Inject constructor(
                 if(it.isEmpty()) return@getPhotos
                 val curList = currentList.value.toMutableList()
                 curList.addAll(it)
-                curList.distinct()
                 currentList.value = curList
                 loading.value = false
             },
